@@ -1,0 +1,315 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.logo{
+    display:flex;
+    max-width:150px;
+    cursor:pointer;
+}
+:root {
+    --BODYBG: linear-gradient(to right,orangered,deepskyblue);
+    --BGCOLOR: black;
+    --COLOR: whitesmoke;
+}
+
+html {
+    min-height: 100vh;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    background-image: url(night-ocean-landscape-full-moon-stars-shine_107791-7397.webp);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+header {
+    width:100%;
+    margin:0 auto;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    color: var(--COLOR);
+}
+
+.title-line {
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.menu-button {
+    margin: 0.5em 1em 0 0;
+    background-color: transparent;
+    border: none;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.closeMenuBtn {
+    border: 1px;
+    display: none;
+    background-color: transparent;
+    outline: none;
+    position: absolute;
+    top: 0.5em;
+    right: 1em;
+    width: 48px;
+    height: 48px;
+}
+
+.menu-icon, .menu-icon::after, .menu-icon::before {
+    background-color: var(--COLOR);
+    width: 40px;
+    height: 5px;
+    position: absolute;
+    transition: all 0.5s;
+    border-radius: 5px;
+}
+
+    .menu-icon::after, .menu-icon::before {
+        content: "";
+    }
+
+    .menu-icon::before {
+        transform: translate(-20px,-12px);
+    }
+
+    .menu-icon::after {
+        transform: translate(-20px,12px);
+    }
+
+
+
+@keyframes showMenu {
+    0% {
+        transform: scaleY(0)
+    }
+
+    100% {
+        transform: scaleY(1)
+    }
+}
+
+.closeMenuBtn:focus + nav {
+    transform-origin: top;
+    animation: hideMenu 0.2s ease forwards;
+}
+
+@keyframes hideMenu {
+    0% {
+        transform: scaleY(1)
+    }
+
+    100% {
+        transform: scaleY(0)
+    }
+}
+
+nav ul {
+    width: 100%;
+    top: 0;
+    z-index: 1;
+    background-color: var(--BGCOLOR);
+    list-style-type: none;
+    display: flex;
+    flex-flow: column nowrap;
+    position: absolute;
+}
+
+nav li {
+    padding: 0.5rem;
+    border-top: 2px solid var(--COLOR);
+}
+
+    nav li a {
+
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin: auto;
+        text-decoration: none;
+        color: var(--COLOR);
+        font-weight: bolder;
+    }
+
+    nav li a:hover {
+        transform: scale(120%);
+        transition:0.3s;
+    }
+   
+
+.title-line:focus-within .menu-icon {
+    background-color: transparent;
+    transform: rotate(360deg);
+}
+
+    .title-line:focus-within .menu-icon::before {
+        transform: translateX(-20px) rotate(45deg);
+    }
+
+    .title-line:focus-within .menu-icon::after {
+        transform: translateX(-20px) rotate(-45deg);
+    }
+
+nav {
+    display: none;
+    position: relative;
+}
+
+header:focus-within nav {
+    display: block;
+    transform-origin: top;
+    animation: showMenu 0.5s ease forwards;
+}
+
+header:focus-within .closeMenuBtn {
+    display: block;
+}
+
+    header:focus-within .closeMenuBtn:focus {
+        transform: translateX(-50px);
+    }
+
+
+
+
+.content {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    color: white;
+    transform: translateY(-50%)
+}
+
+    .content h1 {
+        color: #009688;
+        font-size: 2rem;
+        margin-top: 1em;
+    }
+
+    .content p {
+        font-size: 1em;
+        margin: 1em auto;
+        font-weight: 100;
+        line-height: 1em;
+    }
+
+.aniBtn {
+    width: 30%;
+    padding:15px 0;
+    margin: 1.5rem 0.5rem;
+    border: 2px solid #009688;
+    border-radius: 25px;
+    font-weight: bold;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+span {
+    background: #009688;
+    width: 0%;
+    height: 100%;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+.aniBtn:hover span {
+    width: 100%;
+    border: none;
+}
+
+.aniBtn:hover {
+    border: none;
+}
+
+
+
+
+
+@media screen and (min-width:768px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+    }
+    .menu-button {
+        display: none;
+    }
+
+    nav {
+        display: block;
+    }
+
+        nav ul { 
+            position: unset;
+            background: transparent;
+            padding: 0.25em 0.5em;
+            flex-flow: row nowrap;
+            margin-left: 2em;
+        }
+        nav ul li:last-child{
+            margin-right:2em;
+        }
+
+            nav ul li {
+                border-top: none;
+                display: inline-block;
+                position: relative;
+            }
+
+    ul li::after {
+        content: "";
+        height: 3px;
+        width: 0;
+        background: #009688;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        transition: 0.5s;
+    }
+
+    ul li:hover::after {
+        width: 100%;
+    }               
+
+    header:focus-within nav {
+        animation: none;
+    }
+
+    .l{
+        white-space:nowrap;
+    }
+    .aniBtn{
+        width:15%;
+    }
+    .logo{
+       max-width: 250px;
+    }
+
+    .content h1{
+        font-size:4rem;
+    }
+}
